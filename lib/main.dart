@@ -16,6 +16,6 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
-        home: const Splash());
+        home: const SafeArea(child: Splash()));
   }
 }

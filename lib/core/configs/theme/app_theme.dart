@@ -5,11 +5,13 @@ class AppTheme {
   static final lightTheme = ThemeData(
       fontFamily: 'Satoshi',
       brightness: Brightness.light,
-      primaryColor: AppColors.primaryColor,
+      primaryColor: const Color.fromRGBO(66, 200, 60, 1),
       scaffoldBackgroundColor: AppColors.lightBackground,
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
               backgroundColor: AppColors.primaryColor,
+              elevation: 0,
               textStyle:
                   const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               shape: RoundedRectangleBorder(

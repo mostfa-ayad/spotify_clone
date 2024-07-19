@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,10 +8,9 @@ import 'package:spotify_clone/common/widgets/buttons/basic_app_button.dart';
 import 'package:spotify_clone/core/configs/assets/app_images.dart';
 import 'package:spotify_clone/core/configs/assets/app_vectors.dart';
 import 'package:spotify_clone/core/configs/theme/app_colors.dart';
-import 'package:spotify_clone/presentation/choose_mode/pages/choose_mode.dart';
 
-class GetStarted extends StatelessWidget {
-  const GetStarted({super.key});
+class ChooseMode extends StatelessWidget {
+  const ChooseMode({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,8 @@ class GetStarted extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage(AppImages.intro), fit: BoxFit.fill)),
+                    image: AssetImage(AppImages.chooseModeBG),
+                    fit: BoxFit.fill)),
           ),
           Align(
             alignment: Alignment.topCenter,
@@ -36,34 +38,27 @@ class GetStarted extends StatelessWidget {
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 20),
-                        "Enjoy listening to music",
-                      ),
-                      SizedBox(
-                        height: context.hight * .02,
-                      ),
-                      SizedBox(
-                        width: context.width * .85,
-                        child: const Text(
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.clip,
-                            maxLines: 5,
-                            style:
-                                TextStyle(fontSize: 18, color: AppColors.gray),
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis enim purus sed phasellus. Cursus ornare id scelerisque aliquam."),
+                        "Choose Mode",
                       ),
                       SizedBox(
                         height: context.hight * .05,
                       ),
+                      SizedBox(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            buildModeButton(AppVectors.moon, "Dark Mode"),
+                            buildModeButton(AppVectors.sun, "Light Mode")
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: context.hight * .1,
+                      ),
                       BasicAppButton(
                         height: context.hight * .1,
-                        title: "Get Started",
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ChooseMode(),
-                              ));
-                        },
+                        title: "Continue",
+                        onPressed: () {},
                       ),
                       SizedBox(
                         height: context.hight * .05,
@@ -75,6 +70,41 @@ class GetStarted extends StatelessWidget {
             ),
           )
         ]),
+      ),
+    );
+  }
+
+  buildModeButton(String iconUrl, String title) {
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          ClipOval(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: 10,
+                sigmaY: 10,
+              ),
+              child: SizedBox(
+                height: 80,
+                width: 80,
+                child: DecoratedBox(
+                    decoration: const BoxDecoration(shape: BoxShape.circle),
+                    child: SvgPicture.asset(
+                      iconUrl,
+                      fit: BoxFit.none,
+                    )),
+              ),
+            ),
+          ),
+          Text(
+            title,
+            style: const TextStyle(
+                color: AppColors.gray,
+                fontSize: 17,
+                fontWeight: FontWeight.w500),
+          )
+        ],
       ),
     );
   }
