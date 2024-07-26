@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:spotify_clone/common/helpers/extintions.dart';
 
-class BasicAppBar extends StatelessWidget {
-  const BasicAppBar({super.key});
+class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
+  Widget? logo;
+  BasicAppBar({super.key, this.logo});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      title: logo ?? Container(),
+      centerTitle: true,
       backgroundColor: Colors.transparent,
       elevation: 0,
       leading: IconButton(
@@ -27,4 +30,7 @@ class BasicAppBar extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

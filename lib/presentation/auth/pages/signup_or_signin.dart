@@ -5,6 +5,8 @@ import 'package:spotify_clone/common/widgets/appbar/basic_app_bar.dart';
 import 'package:spotify_clone/common/widgets/buttons/basic_app_button.dart';
 import 'package:spotify_clone/core/configs/assets/app_images.dart';
 import 'package:spotify_clone/core/configs/assets/app_vectors.dart';
+import 'package:spotify_clone/presentation/auth/pages/signin_page.dart';
+import 'package:spotify_clone/presentation/auth/pages/signup_page.dart';
 
 class SignupOrSignin extends StatelessWidget {
   const SignupOrSignin({super.key});
@@ -15,7 +17,7 @@ class SignupOrSignin extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: [
-            const BasicAppBar(),
+            BasicAppBar(),
             Align(
               alignment: Alignment.topRight,
               child: SvgPicture.asset(AppVectors.topPattern),
@@ -54,10 +56,23 @@ class SignupOrSignin extends StatelessWidget {
                       Expanded(
                           flex: 1,
                           child: BasicAppButton(
-                              title: "Register", onPressed: () {})),
+                              title: "Register",
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const SignupPage(),
+                                    ));
+                              })),
                       Expanded(
                           child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const SigninPage(),
+                                    ));
+                              },
                               child: Text(
                                 "Sign in",
                                 style: TextStyle(
