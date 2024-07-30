@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,6 +16,9 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: createUser.email, password: createUser.password);
+      FirebaseFirestore.instance
+          .collection('users')
+          .add({"name": createUser.fullName, "email": createUser.email});
       return const Right("Registered successfully");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
