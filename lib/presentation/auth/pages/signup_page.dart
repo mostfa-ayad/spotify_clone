@@ -8,7 +8,7 @@ import 'package:spotify_clone/core/configs/assets/app_vectors.dart';
 import 'package:spotify_clone/data/model/auth/create_user_req.dart';
 import 'package:spotify_clone/domin/usecases/auth/signup_usecase.dart';
 import 'package:spotify_clone/presentation/auth/pages/signin_page.dart';
-import 'package:spotify_clone/presentation/root/pages/root_page.dart';
+import 'package:spotify_clone/presentation/home_page/pages/home_page.dart';
 
 class SignupPage extends StatelessWidget {
   SignupPage({super.key});
@@ -62,7 +62,7 @@ class SignupPage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const RootPage(),
+                              builder: (context) => const HomePage(),
                             ));
                       },
                     );

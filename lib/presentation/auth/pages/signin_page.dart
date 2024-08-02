@@ -10,7 +10,7 @@ import 'package:spotify_clone/data/model/auth/signin_user_req.dart';
 import 'package:spotify_clone/domin/usecases/auth/signin_usecase.dart';
 import 'package:spotify_clone/presentation/auth/pages/signin_page.dart';
 import 'package:spotify_clone/presentation/auth/pages/signup_page.dart';
-import 'package:spotify_clone/presentation/root/pages/root_page.dart';
+import 'package:spotify_clone/presentation/home_page/pages/home_page.dart';
 
 class SigninPage extends StatelessWidget {
   TextEditingController email = TextEditingController();
@@ -60,7 +60,7 @@ class SigninPage extends StatelessWidget {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const RootPage()));
+                                builder: (context) => const HomePage()));
                       },
                     );
                   }),
