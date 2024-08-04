@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotify_clone/core/configs/assets/app_images.dart';
 import 'package:spotify_clone/core/configs/assets/app_vectors.dart';
+import 'package:spotify_clone/presentation/home_page/widgets/new_songs_widget.dart';
 import 'package:spotify_clone/presentation/home_page/widgets/tab_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -33,7 +34,20 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         drawer: const Drawer(),
         body: SingleChildScrollView(
           child: Column(
-            children: [_topCard(), const SizedBox(height: 20), _taps()],
+            children: [
+              _topCard(),
+              const SizedBox(height: 20),
+              _taps(),
+              SizedBox(
+                height: 300,
+                child: TabBarView(controller: tabController, children: [
+                  const Tab(child: NewSongsWidget()),
+                  Tab(child: Container()),
+                  Tab(child: Container()),
+                  Tab(child: Container()),
+                ]),
+              )
+            ],
           ),
         ));
   }
@@ -57,15 +71,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   _taps() {
-    return TabBar(
-      controller: tabController,
-      isScrollable: true,
-      tabs: [
-        TabWidget(title: "New"),
-        TabWidget(title: "Video"),
-        TabWidget(title: "Artist"),
-        TabWidget(title: "Popular")
-      ],
+    return SizedBox(
+      height: 50,
+      child: TabBar(
+        controller: tabController,
+        isScrollable: true,
+        tabs: [
+          TabWidget(title: "New"),
+          TabWidget(title: "Video"),
+          TabWidget(title: "Artist"),
+          TabWidget(title: "Popular")
+        ],
+      ),
     );
   }
 }

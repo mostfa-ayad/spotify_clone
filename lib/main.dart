@@ -6,8 +6,9 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:spotify_clone/core/configs/theme/app_theme.dart';
 import 'package:spotify_clone/presentation/choose_mode/bloc/theme_cubit.dart';
+import 'package:spotify_clone/presentation/home_page/pages/home_page.dart';
 import 'package:spotify_clone/presentation/splash/pages/splash.dart';
-import 'package:spotify_clone/serice_locator.dart';
+import 'package:spotify_clone/service_locator.dart';
 
 import 'firebase_options.dart';
 
@@ -22,7 +23,7 @@ void main() async {
         ? HydratedStorage.webStorageDirectory
         : await getApplicationDocumentsDirectory(),
   );
-  intilizeDepencies();
+  await intilizeDepencies();
   runApp(const MyApp());
 }
 
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,
               themeMode: state,
-              home: const SafeArea(child: Splash()));
+              home: const SafeArea(child: HomePage()));
         },
       ),
     );
