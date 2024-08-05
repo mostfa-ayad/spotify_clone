@@ -6,14 +6,14 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:spotify_clone/core/configs/theme/app_theme.dart';
 import 'package:spotify_clone/presentation/choose_mode/bloc/theme_cubit.dart';
-import 'package:spotify_clone/presentation/home_page/pages/home_page.dart';
-import 'package:spotify_clone/presentation/splash/pages/splash.dart';
+import 'package:spotify_clone/presentation/home_page/widgets/new_songs_widget.dart';
 import 'package:spotify_clone/service_locator.dart';
 
 import 'firebase_options.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -34,7 +34,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (_) => ThemeCubit())],
+      providers: [
+        BlocProvider(create: (_) => ThemeCubit()),
+      ],
       child: BlocBuilder<ThemeCubit, ThemeMode>(
         builder: (context, state) {
           return MaterialApp(
@@ -43,7 +45,10 @@ class MyApp extends StatelessWidget {
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,
               themeMode: state,
-              home: const SafeArea(child: HomePage()));
+              home: const SafeArea(
+                  child: Scaffold(
+                body: NewSongsWidget(),
+              )));
         },
       ),
     );

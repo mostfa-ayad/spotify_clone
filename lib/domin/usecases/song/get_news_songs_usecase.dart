@@ -7,6 +7,7 @@ import 'package:spotify_clone/service_locator.dart';
 
 class GetNewsSongsUsecase {
   Future<Either> call() async {
+    print("usecase called");
     return await sl<SongRepository>().getNews();
   }
 }

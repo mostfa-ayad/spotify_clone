@@ -10,6 +10,7 @@ class NewSongsCubit extends Cubit<NewSongsState> {
   NewSongsCubit() : super(LoadingNewSongs());
 
   load() async {
+    print("cubit called");
     var response = await sl<GetNewsSongsUsecase>().call();
     response.fold((l) {
       emit(ErrorNewSongs(msg: l));

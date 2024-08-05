@@ -41,10 +41,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               SizedBox(
                 height: 300,
                 child: TabBarView(controller: tabController, children: [
-                  const Tab(child: NewSongsWidget()),
-                  Tab(child: Container()),
-                  Tab(child: Container()),
-                  Tab(child: Container()),
+                  Tab(child: Container(color: Colors.yellow)),
+                  Tab(child: Container(color: Colors.green)),
+                  Tab(child: Container(color: Colors.blue)),
+                  Tab(
+                      child: Container(
+                    color: Colors.red,
+                  )),
                 ]),
               )
             ],
@@ -53,20 +56,23 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   _topCard() {
-    return Stack(
-      children: [
-        Align(
-            alignment: Alignment.center,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: SvgPicture.asset(
-                  fit: BoxFit.fitWidth, AppVectors.homeTopCard),
-            )),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: Image.asset(AppImages.homeArtist),
-        )
-      ],
+    return SizedBox(
+      height: 200,
+      child: Stack(
+        children: [
+          Align(
+              alignment: Alignment.center,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: SvgPicture.asset(
+                    fit: BoxFit.fitWidth, AppVectors.homeTopCard),
+              )),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Image.asset(AppImages.homeArtist),
+          )
+        ],
+      ),
     );
   }
 
